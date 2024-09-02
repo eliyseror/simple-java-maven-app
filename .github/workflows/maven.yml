@@ -35,7 +35,7 @@ jobs:
         echo "Current version: $VERSION"
         echo "VERSION=$VERSION" >> $GITHUB_ENV
 
-    - name: Calculate new version
+    - name:  Update new version in pom.xml
       id: calculate_version
       run: |
         IFS='.' read -r -a version_parts <<< "${{ env.VERSION }}"
@@ -44,9 +44,6 @@ jobs:
         NEW_VERSION="${version_parts[0]}.${version_parts[1]}.$NEW_PATCH"
         echo "New version: $NEW_VERSION"
         echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-
-    - name: Update version in pom.xml
-      run: |
         # Update the version directly using sed
         sed -i "s/<version>${{ env.VERSION }}<\/version>/<version>${{ env.NEW_VERSION }}<\/version>/g" pom.xml
         
