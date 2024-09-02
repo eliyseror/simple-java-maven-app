@@ -74,7 +74,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ${{ vars.DOCKERHUB_USERNAME }}/new_repo:githup_project
+        tags: ${{ vars.DOCKER_USERNAME }}/new_repo:githup_project
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     # - name: Update dependency graph
