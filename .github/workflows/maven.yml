@@ -89,14 +89,18 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+       # DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+       # DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+        TF_VAR_docker_username: ${{ vars.DOCKER_USERNAME }}
+        TF_VAR_docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Terraform Apply
       run: terraform apply -auto-approve
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+        #DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+        #DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+        TF_VAR_docker_username: ${{ vars.DOCKER_USERNAME }}
+        TF_VAR_docker_password: ${{ secrets.DOCKERHUB_TOKEN }}
 
    
