@@ -57,6 +57,7 @@ variable "image_tag" {
   default     = "githup_project"
 }
 
+
 variable "docker_username" {
   description = "Docker registry username"
   type        = string
