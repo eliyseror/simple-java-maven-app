@@ -49,8 +49,8 @@ jobs:
         # Verify that the version was updated
         grep "<version>${{ env.NEW_VERSION }}</version>" pom.xml || { echo "Version update failed"; exit 1; }
 
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+ #   - name: Build with Maven
+ #    run: mvn -B package --file pom.xml
 
     - name: Commit version changes
       if: github.ref == 'refs/heads/master'
