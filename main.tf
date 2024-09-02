@@ -28,7 +28,6 @@ resource "aws_security_group" "instance_sg" {
 resource "aws_instance" "my_instance" {
   ami           = "ami-05134c8ef96964280"
   instance_type = "t2.micro"
-  key_name      = "eli_o"
   security_groups = [aws_security_group.instance_sg.name]
 
   tags = {
@@ -45,10 +44,6 @@ resource "aws_instance" "my_instance" {
               sudo docker run ${var.image_name}:${var.image_tag}
               EOF
     }
-variable "key_name" {
-  description = "The name of the key pair for SSH access to the EC2 instance"
-  type        = string
-}
 
 variable "image_name" {
   description = "The name of the Docker image"
