@@ -27,6 +27,27 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Get current version
+      id: get_version
+      run: |
+        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "Current version: $VERSION"
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+    - name: Calculate new version
+      id: calculate_version
+      run: |
+        IFS='.' read -r -a version_parts <<< "${{ env.VERSION }}"
+        PATCH=${version_parts[2]}
+        NEW_PATCH=$((PATCH + 1))
+        NEW_VERSION="${version_parts[0]}.${version_parts[1]}.$NEW_PATCH"
+        echo "New version: $NEW_VERSION"
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+    - name: Update version in pom.xml
+      run: |
+        mvn versions:set -DnewVersion=${{ env.NEW_VERSION }} -DgenerateBackupPoms=false
+ 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
