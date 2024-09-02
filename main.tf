@@ -43,6 +43,7 @@ resource "aws_instance" "my_instance" {
               sudo systemctl enable docker
               echo "${var.docker_password}" | sudo docker login -u "${var.docker_username}" --password-stdin
               sudo docker run ${var.image_name}:${var.image_tag}
+              EOF
     
 variable "key_name" {
   description = "The name of the key pair for SSH access to the EC2 instance"
