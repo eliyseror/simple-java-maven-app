@@ -45,9 +45,9 @@ resource "aws_instance" "my_instance" {
               #!/bin/bash
               sudo apt-get update -y
               sudo apt-get install -y docker.io
-          #    sudo systemctl start docker
-          #    sudo systemctl enable docker
-          #    echo "${var.docker_password}" | sudo docker login -u "${var.docker_username}" --password-stdin
+              sudo systemctl start docker
+              sudo systemctl enable docker
+              echo "${var.docker_password}" | sudo docker login -u "${var.docker_username}" --password-stdin
               sudo docker run ${var.image_name}:${var.image_tag}
               EOF
     }
